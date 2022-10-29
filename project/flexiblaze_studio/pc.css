@@ -1,0 +1,274 @@
+
+/* Styling voor body  */
+body{
+	overflow-x:hidden;
+}
+
+/* Media quarry */
+.mediaViewInfo {
+	--web-view-name: Pc Handleiding;
+	--web-view-id: Pc Handleiding ;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+
+/* Styling voor alle html elementen */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+
+/* Styling voor alle div elementen */
+#body {
+	position: absolute;
+	width: 1920px;
+	height: 10974px;
+	background-color: rgba(136,127,127,1);
+	overflow: hidden;
+	--web-view-name: Pc Handleiding;
+	--web-view-id: Pc Handleiding;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+
+/* header achterground styling */
+#header_blank {
+	fill: rgba(255,255,255,1);
+	stroke: rgba(112,112,112,1);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+/* header plaatsing */
+.header_blank {
+	position: absolute;
+	overflow: visible;
+	width: 1930px;
+	height: 167px;
+	left: -10px;
+	top: 0px;
+}
+/* Styling tekst */
+#Fleziblaze_Studio {
+	left: 463px;
+	top: 53px;
+	position: absolute;
+	overflow: visible;
+	width: 607px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 80px;
+	color: rgba(112,112,112,1);
+}
+#PC_handleiding {
+	left: 578px;
+	top: 218px;
+	position: absolute;
+	overflow: visible;
+	width: 383px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 50px;
+	color: rgba(255,255,255,1);
+}
+#AMD-CPU{
+	left: 193px;
+	top: 335px;
+	position: absolute;
+	overflow: visible;
+	width: 1031px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Koeler {
+	left: 193px;
+	top: 1583px;
+	position: absolute;
+	overflow: visible;
+	width: 1146px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Intel-CPU{
+	left: 193px;
+	top: 2287px;
+	position: absolute;
+	overflow: visible;
+	width: 1250px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Koeler__{
+	left: 193px;
+	top: 3467px;
+	position: absolute;
+	overflow: visible;
+	width: 1187px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Werkgeheugen{
+	left: 193px;
+	top: 4375px;
+	position: absolute;
+	overflow: visible;
+	width: 1229px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Moederbord{
+	left: 193px;
+	top: 5147px;
+	position: absolute;
+	overflow: visible;
+	width: 1137px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Montage{
+	left: 192px;
+	top: 6157px;
+	position: absolute;
+	overflow: visible;
+	width: 1221px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Grafische{
+	left: 192px;
+	top: 6691px;
+	position: absolute;
+	overflow: visible;
+	width: 1124px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Optische_drivers{
+	left: 193px;
+	top: 7157px;
+	position: absolute;
+	overflow: visible;
+	width: 1234px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Harddisk {
+	left: 193px;
+	top: 8677px;
+	position: absolute;
+	overflow: visible;
+	width: 1175px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+#Bekabeling {
+	left: 173px;
+	top: 9245px;
+	position: absolute;
+	overflow: visible;
+	width: 1216px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+/* Footer achterground styling */
+#Footer_blank {
+	fill: rgba(255,255,255,1);
+	stroke: rgba(112,112,112,1);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+
+/* Footer plaatsing */
+.Footer_blank {
+	overflow: visible;
+	position: absolute;
+	width: 1938px;
+	height: 195.831px;
+	left: -9px;
+	top: 10780.169px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+/* contact styling */
+#contact {
+	left: 428px;
+	top: 10809px;
+	position: absolute;
+	overflow: visible;
+	width: 653px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 40px;
+	color: rgba(112,112,112,1);
+}

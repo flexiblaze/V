@@ -1,0 +1,131 @@
+
+
+/* body styling */
+body{
+	overflow-x:hidden;
+}
+
+/* Voor media quarry */
+.mediaViewInfo {
+	--web-view-name: page_internet;
+	--web-view-id: page_internet;
+	--web-enable-deep-linking: true;
+}
+/* kies alle ellementen van html page */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+/* styling voor alle divs */
+#Body {
+	position: absolute;
+	width: 1920px;
+	height: 5524px;
+	background-color: rgba(136,127,127,1);
+	overflow: hidden;
+	--web-view-name: Web 1920 – 3;
+	--web-view-id: page_internet;
+	--web-enable-deep-linking: true;
+}
+/* achterground van header */
+#Blank_bg {
+	fill: rgba(255,255,255,1);
+	stroke: rgba(112,112,112,1);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+
+/* rectangle voor header */
+.Blank_bg {
+	position: absolute;
+	overflow: visible;
+	width: 1930px;
+	height: 167px;
+	left: -10px;
+	top: 0px;
+}
+/* header styling */
+#header {
+	left: 506px;
+	top: 45px;
+	position: absolute;
+	overflow: visible;
+	width: 607px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 80px;
+	color: rgba(112,112,112,1);
+}
+
+/* styling  */
+#netwerk_button{
+	left: 362px;
+	top: 209px;
+	position: absolute;
+	overflow: visible;
+	width: 599px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 50px;
+	color: rgba(255,255,255,1);
+}
+/* styling voor tekst */
+#tekst {
+	left: 164px;
+	top: 325px;
+	position: absolute;
+	overflow: hidden;
+	width: 1309px;
+	height: 4946px;
+	text-align: left;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	color: rgba(255,255,255,1);
+}
+/* styling voor footer */
+#footer_blank {
+	fill: rgba(255,255,255,1);
+	stroke: rgba(112,112,112,1);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+/* styling voor footer part */
+.footer_blank{
+	position: absolute;
+	overflow: visible;
+	width: 1938px;
+	height: 182px;
+	left: -18px;
+	top: 5342px;
+}
+/* Contact styling */
+#Contact {
+	left: 471px;
+	top: 5364px;
+	position: absolute;
+	overflow: visible;
+	width: 653px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Arial Rounded MT;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 40px;
+	color: rgba(112,112,112,1);
+}
