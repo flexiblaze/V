@@ -1,0 +1,141 @@
+
+
+/*  Achtergrond kleur van website */
+body {
+    background-color: olivedrab;
+}
+
+/*  attributes voor header  */
+body header {
+    text-align: center;  /*  om gemiddeld te maken  */
+    color: white;  /*  kleur te maken */
+    font-size: 50px;  /*  grootte van text */
+    font-family: "Arial Rounded MT Bold";   /* om font soort te aanpassen   */
+}
+
+/*  Navigatie ul  attributes */
+nav ul {
+    text-align: center;  /*  gebruik text-align center om gemiddeld te maken */
+}
+
+/*  Om navigatie attributes aan te passen */
+li {
+    display: inline; /* om navigatie menu horizontaal te maken   */
+}
+/*  Attributes voor navigatie knoppen */
+nav ul li a {
+    padding: 20px; /* eigenschap kun je gebruiken om vast te leggen, hoeveel ruimte er moet worden vrijgehouden tussen de inhoud van een element en de verschillende randen. */
+    color: white;
+    font-family: Arial;
+    font-size: 30px;
+    cursor: pointer;  /* bepaalt hoe de muisaanwijzer moet worden weergeven, als deze zich boven de box van een element bevindt.  */
+    transition: 3s;  /*  de tijd van transition */
+}
+/*  attribues voor ul */
+ul {
+    position: -webkit-sticky; /* Safari */  /* kan de positie bepaald worden, waar een HTML-element in het document moet worden weergegeven. Mogelijke waarden zijn absolute, relative en static.  */
+    position: sticky;
+    top: 0;  /*  meer styling voor ul */
+}
+
+/*  attribues voor class kitap */
+.kitap {
+    display: block;   /* kun je bepalen of en hoe de browser een element moet weergeven  */
+    max-width: 100%;  /* defineert  maximum width of an element*/
+    height: auto;    /* defineert  height*/
+    margin-left: 380px; /* Horizontal Space */
+    margin-top: 30px; /* Vertical Space */
+    width: 50%   /* defineert  width */
+
+}
+/* Attributes voor h2 title*/
+h2 {
+    color: white;
+    font-size: 40px;
+}
+/* Attributes class des*/
+.des {
+    color: white;
+}
+/* Attributes voor index.html footer*/
+footer {
+    background-color: black;
+
+}
+/* Attributes voor index.html footer's class foot*/
+footer .foot {
+    color: white;
+    text-align: center;
+}
+/* Attributes voor class intro*/
+.intro {
+    color: white;
+    font-size: 30px;
+    text-align: left;
+    padding-top: 30px;
+    padding-left: 40px;
+
+}
+/* Attributes voor  img class start */
+img.start {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-left: 30px; /* Horizontal Space */
+    margin-top: 30px; /* Vertical Space */
+    width: 50%
+}
+/* Attributes voor  img class atomic */
+img.atomic {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-left: 30px; /* Horizontal Space */
+    margin-top: 30px; /* Vertical Space */
+    width: 50%
+
+}
+/* Attributes voor  div class intro3 */
+div.intro3 {
+    color: white;
+    font-size: 30px;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+/* Attributes voor  div class intro4 */
+div.intro4 {
+    color: white;
+    font-size: 30px;
+    padding-top: 30px;
+    padding-left: 40px;
+
+}
+/* Attributes voor  div class title */
+div.title {
+    text-align: left;
+    font-family: "Agency FB";
+    font-size: 50px;
+    color: white;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+/* Attributes voor  div class info */
+div.info {
+    font-family: "Bodoni MT Condensed";
+    color: white;
+    text-align: left;
+    font-size: 35px;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+/* Attributes voor  div class Ömer a */
+div.Ömer a {
+    text-align: center;
+    color: white;
+    font-size: 70px;
+    font-family: "Arial Rounded MT Bold";
+}
+
+
+
+
