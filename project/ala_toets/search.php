@@ -22,22 +22,21 @@
 
  if(isset($_POST["Search"])){
     if(empty($_POST["search-text"])){
-        echo "error no user input";
+        echo " error no user input";
     }else{
         echo "Boogle searched for : ";
         echo $_POST['search-text'];
         echo "<br><br>";
         echo(rand(1000000,2000000));
-        echo " results in";
+        echo " results in ";
         echo (rand(40,50));
         echo " milliseconds";
-       
     }
  }
  ?>
 </body>
  <footer>
-    
+
     <a href="index.html"><button class="return-button">RETURN</button></a>
     <p>(C) 2022 Boogle Search</p>
 
