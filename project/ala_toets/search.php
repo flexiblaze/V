@@ -37,8 +37,10 @@
  ?>
 </body>
  <footer>
+    
     <a href="index.html"><button class="return-button">RETURN</button></a>
     <p>(C) 2022 Boogle Search</p>
+
  </footer>
 </html>
 
