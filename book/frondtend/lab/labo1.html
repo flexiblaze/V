@@ -4,38 +4,22 @@
         <meta http-equiv="Content-Type"
         content="text/html";
         charset="UTF-8">
-        <title>Variabelen Html
-        </title>
+        <title>Lab 1 </title>
     </head>
     <body>
+        <h2> Lab 01</h2>
+        <h3> Factuur</h3>
+        
         <script>
-            var voornaam="Carl";
-            var achternaam="Petersen";
-            var schoolgeld= 1000;
-            var boekengeld=100;
-            var bedrag= schoolgeld + boekengeld;
-            var studiefinanciering= 600;
-            var totaal= bedrag - studiefinanciering;
-            var volledigenaam = voornaam + "<br>" + achternaam;
-            document.write(
-                "<p>Opgave 8 </p>" + volledigenaam+
-                "<br> Totaal te betalen: " + totaal);
+            var klantnaam = promt("voer je eigen naam in");
+            var aantal= parseInt(prompt("aantal boeken te bestellen"));
+            var titel = "JavaScript";
+            var prijs = 29.90;
 
-            var achternaam=" Bolt";
-            var voornaam='Zakaria';
-            var nederlands=9;
-            var engels= 8;
-            var rekenen=7;
-            var gemiddeld= nederlands + engels + rekenen;
-            var antwoord = gemiddeld/3;
-            document.write(
-                "<p> Opgave 9 </p> " + voornaam +achternaam+
-                "<br> Nederlands: 9"+
-                "<br> Engels: 8"+
-                "<br> Rekenen: 7"+
-                "<br> Gemiddeld:"+ antwoord);
-            
-    
+            document.write("<br>Bedankt voor je bestelling:"+ klantnaam);
+            document.write("<br>Boektitle is: "+ titel);
+            document.write("<br>Aantal te bestellen: "+ aantal);
+            document.write("<br>Prijs per boek is: "+ prijs.toFixed(2));
         </script>
     </body>
 </html>
