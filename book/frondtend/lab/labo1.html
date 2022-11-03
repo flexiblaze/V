@@ -22,7 +22,6 @@
     var prijs = 29.90;
     var bedrag= aantal * prijs;
     var btw= bedrag * (6/100);
-
     var totaal= bedrag +btw;
 
 
@@ -31,8 +30,8 @@
     document.write("<br>Aantal te bestellen: " + aantal);
     document.write("<br>Prijs per boek is: " +prijs.toFixed(2));
     document.write("<br>Bedrag: " + bedrag);
-    document.write("<br>Btw is: " + aantal);
-    document.write("<br>Totaal inclusief BTW is: " + totaal/toFixed(2));
+    document.write("<br>Btw is: " + btw.toFixed(2));
+    document.write("<br>Totaal inclusief BTW is: " + totaal.toFixed(2));
 
 
  
