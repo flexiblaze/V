@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methodes</title>
+</head>
+<body>
+    <script>
+      
+    var studenten = new Array('Zakaria','Albert','Hamsa', 'Mike' , 'Pieter');
+    console.log('Opgave 24: Studenten: ' + studenten);
+
+    team = studenten;
+    console.log('Opgave 25: Team: ' + team);
+
+    team[0] = 'Umut';
+    console.log('Opgave 26: Element [0] is gewijzigd: ' + studenten);
+
+    studenten.shift();
+    console.log('Opgave 27: Resultaat van shift: ' + studenten);
+
+    studenten.unshift('Jozef' , 'Umut');
+    console.log('Opgave 28: Resultaat van unshift: ' + studenten);
+
+    studenten.pop();
+    console.log('Opgave 29: Resultaat van pop: ' + studenten);
+
+    studenten.push();
+    console.log('Opgave 30: Resultaat van push: '+ studenten);
+
+    klas = studenten.splice(2,4);
+    console.log('Opgave 31: Resultaat\nstudenten: '+ studenten + '\nklas:' + klas);
+
+    studenten.sort();
+    console.log('Opgave 32: Resultaat van sort: ' + studenten);
+
+    studenten.reverse();
+    console.log('Opgave 33: Resultaat van reverse: '+ studenten);
+
+    index= studenten.indexOf('Jozef');
+    console.log('Opgave 34: Resultaat van indexOf Jozef: ' + index);
+
+    delete klas[2];
+    console.log('Opgave 35: Resultaat van delete: ' + klas);
+
+    console.log('Opgave 36: Datatype van gedelete element: ' + typeof klas[2]);
+
+    klas.splice(2, 1);
+    console.log('Opgave 37: Element volledig verwijderd: '+ klas);
+
+    index = studenten.indexOf('Jozef');
+    studenten.splice(index, 1);
+    console.log('Opgave 38: Specifieke student verwijderd: '+ studenten);
+
+    klas2= klas.slice();
+    console.log('Opgave 39: Resultaat van kopieren: ' + klas2);
+
+    var myString = klas.join( )
+
+
+
+    </script>
+</body>
+</html>
