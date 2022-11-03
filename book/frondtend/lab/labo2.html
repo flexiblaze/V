@@ -9,8 +9,15 @@
 <body>
     <script>
 
-lengte = prompt("Wat is je lengte in meters");
+       var foot = 0.3048;
+       var meter= 3.28084;
 
+       lengte= prompt("Wat is je lengte in meters");
+
+       lengte = lengte * meter;
+
+       document.write("Je lengte in feet is "+lengte.toFixed(2));
+    
 
     </script>
 </body>
