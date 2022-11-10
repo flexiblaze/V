@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>The Warrior Soldier</title>
 	<!-- build:css main.min.css -->
 		<link rel="stylesheet" href="css/main.css">
 	<!-- /build -->
@@ -10,21 +10,18 @@
 <body>
 	<div id="phaser-div"></div>
 	<div class="info">
-		<strong>Dental Defender: Saga of the Candy Horde</strong><br />
-		Made for #candyjam in Jan 2014 by Cody Shepp - <a target="_blank" href="http://www.twitter.com/cas002">@cas002</a><br />
-		Music: "Hazard" by Spiff Tune - <a target="_blank" href="http://www.soundcloud.com/spifftune">http://www.soundcloud.com/spifftune</a><br />
-		Powered by Phaser - <a target="_blank" href="http://www.phaser.io">http://www.phaser.io</a>
+		<strong>The Warrior Soldier</strong><br />
+		Made for "Coding Week" in November 2022 by Softwareholic Studio -<br />
 	</div>
-
-	<!-- build:remove -->
-		<script src="http://localhost:35729/livereload.js"></script>  
-	<!-- /build -->
+<!-- build:remove -->
+<script src="http://localhost:35729/livereload.js"></script>  
+<!-- /build -->
 
 	<!-- build:js main.min.js -->
   
 		<!-- LIBRARIES -->
-		<script src="js/lib/phaser-new.js"></script>
-		<script src="js/lib/phaser.patch.js"></script>
+		<script src="js/lib/tr.js"></script>
+		<script src="js/lib/twee.js"></script>
 
 		<!-- STATES -->
 		<script src="js/states/bootstate.js"></script>
@@ -48,13 +45,13 @@
 		<!-- ENTITIES -->
 		<script src="js/entities/player.js"></script>
 		<script src="js/entities/bullet.js"></script>
-		<script src="js/entities/bear.js"></script>
 		<script src="js/entities/cane.js"></script>
 		<script src="js/entities/corn.js"></script>
-		<script src="js/entities/turret.js"></script>
-		<script src="js/entities/mine.js"></script>
+        <script src="js/entities/turret.js"></script>		
+        <script src="js/entities/mine.js"></script>
 		<script src="js/entities/tooth.js"></script>
 		<script src="js/entities/explosion.js"></script>
+		<script src="js/entities/bear.js"></script>
 
 		<!-- GUI -->
 		<script src="js/gui/toolbar.js"></script>
@@ -66,20 +63,5 @@
 		<!-- MAIN -->
 		<script src="js/main.js"></script>
 
-	<!-- /build -->
-
 </body>
 </html>
-
-<!-- 
-
-!!! TODO !!!
-
-- points for killing enemies
-- purchase stuff with points (when?)
-- make the mines work
-- intro slides
-- sound FX/music
-- better sprites
-
- -->

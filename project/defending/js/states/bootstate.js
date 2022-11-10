@@ -1,9 +1,7 @@
 
 var MainGame = {};
 
-MainGame.BootState = function(game){
-	
-};
+MainGame.BootState = function(game){};
 
 MainGame.BootState.prototype = {
 

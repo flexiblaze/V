@@ -37,9 +37,9 @@ MainGame.resources.LoaderState = {
 
 	  	, {name: 'overlay', path: 'assets/images/overlay.png'}
 
-	  	, {name: 'mainmenu_bg', path: 'assets/images/mainmenu_bg.png'}
-	  	, {name: 'youlose', path: 'assets/images/youlose.png'}
-	  	, {name: 'youwin', path: 'assets/images/youwin.png'}
+	  	, {name: 'mainmenu_bg', path:'assets/images/mainmenu_bg.jpeg'}
+	  	, {name: 'youlose', path: 'assets/images/youlose.jpeg'}
+	  	, {name: 'youwin', path: 'assets/images/youwin.jpeg'}
 	]
 	, spritesheets: [
 		  {name: 'player', path: 'assets/spritesheets/player.png', width: 36, height: 36}

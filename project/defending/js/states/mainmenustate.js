@@ -15,7 +15,7 @@ MainGame.MainMenuState.prototype = {
 		this.game.add.existing(start_btn);
 
 		/*var instructions_btn = new Phaser.Button(this.game, 1024/2, 680, 'instructions_btn', function(){
-			console.log("instructions");
+		console.log("instructions");
 		}, this, 1, 0, 0);
 		instructions_btn.anchor.setTo(0.5, 0.5);
 		this.game.add.existing(instructions_btn);*/

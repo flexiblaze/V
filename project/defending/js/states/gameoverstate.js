@@ -1,4 +1,3 @@
-
 MainGame.GameOverState = function(game){
 	
 	this.win = false;

@@ -4,6 +4,8 @@ var height = 768;
 
 var game = new Phaser.Game(width, height, Phaser.CANVAS, 'phaser-div');
 
+
+
 game.state.add('Boot', MainGame.BootState);
 game.state.add('Loader', MainGame.LoaderState);
 game.state.add('MainMenu', MainGame.MainMenuState);

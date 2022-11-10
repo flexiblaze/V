@@ -41,14 +41,7 @@ CollisionManager.prototype.purge = function(){
 
 CollisionManager.prototype.update = function(){
 
-	//PLAYER VS LAYER
-	for( var i = 0; i < this.groups.players.length; i++ ){
-		var player = this.groups.players[i];
-		for( var k = 0; k < this.groups.layers.length; k++ ){
-			var layer = this.groups.layers[k];
-			this.game.physics.collide(player, layer);
-		}
-	}
+
 
 	//PLAYER VS TURRETS
 	for( var i = 0; i < this.groups.players.length; i++ ){
@@ -86,16 +79,7 @@ CollisionManager.prototype.update = function(){
 		}
 	}
 
-	//BULLET VS LAYER
-	for( var i = 0; i < this.groups.bullets.length; i++ ){
-		var bullet = this.groups.bullets[i];
-		for( var k = 0; k < this.groups.layers.length; k++ ){
-			var layer = this.groups.layers[k];
-			if(bullet.alive){
-				this.game.physics.collide(bullet, layer, function(){ bullet.die(); });
-			}
-		}
-	}
+	
 
 	//BULLETS (player) VS TEETH
 	for( var i = 0; i < this.groups.bullets.length; i++){
@@ -122,14 +106,7 @@ CollisionManager.prototype.update = function(){
 	}
 
 
-	//BADDIES VS LAYER
-	for( var i = 0; i < this.groups.baddies.length; i++ ){
-		var baddie = this.groups.baddies[i];
-		for( var k = 0; k < this.groups.layers.length; k++ ){
-			var layer = this.groups.layers[k];
-			this.game.physics.collide(baddie, layer);
-		}
-	}
+	
 
 	//BADDIES VS TEETH
 	for( var i = 0; i < this.groups.teeth.length; i++ ){
@@ -167,14 +144,7 @@ CollisionManager.prototype.update = function(){
 		}
 	}
 
-	//ENEMY BULLETS VS LAYER
-	for( var i = 0; i < this.groups.enemy_bullets.length; i++ ){
-		var bullet = this.groups.enemy_bullets[i];
-		for( var k = 0; k < this.groups.layers.length; k++ ){
-			var layer = this.groups.layers[k];
-			this.game.physics.collide(bullet, layer, function(){ bullet.die(); });
-		}
-	}
+	
 
 	//ENEMY BULLETS VS TEETH
 	for( var i = 0; i < this.groups.enemy_bullets.length; i++){

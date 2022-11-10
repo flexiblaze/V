@@ -7,54 +7,6 @@
     root.Phaser = factory();
   }
 }(this, function() {
-/**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2013 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
-
-/**
-* @overview
-*
-* Phaser - http://www.phaser.io
-*
-* v1.1.4 - Built at: Thu Dec 19 2013 14:51:26
-*
-* By Richard Davey http://www.photonstorm.com @photonstorm
-*
-* A feature-packed 2D HTML5 game framework born from the smouldering pits of Flixel and
-* constructed via plenty of blood, sweat, tears and coffee by Richard Davey (@photonstorm).
-*
-* Phaser uses Pixi.js for rendering, created by Mat Groves http://matgroves.com/ @Doormat23.
-*
-* Follow Phaser development progress at http://www.photonstorm.com
-*
-* Many thanks to Adam Saltsman (@ADAMATOMIC) for releasing Flixel, from both which Phaser
-* and my love of game development originate.
-*
-* "If you want your children to be intelligent,  read them fairy tales."
-* "If you want them to be more intelligent, read them more fairy tales."
-*                                                     -- Albert Einstein
-*/
-
-/**
- * @author Mat Groves http://matgroves.com/ @Doormat23
- */
-
-/**
- * @module PIXI
- */
-var PIXI = PIXI || {};
-
-/**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2013 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
-
-/**
-* @namespace Phaser
-*/
 var Phaser = Phaser || {
 
 	VERSION: '1.1.4',
@@ -96,18 +48,6 @@ PIXI.InteractionManager = function (dummy) {
 	//	however the Stage object expects a reference to it, so here is a dummy entry.
 };
 
-/* jshint supernew: true */
-
-/**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2013 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
-
-/**
-* @class Phaser.Utils
-* @static
-*/
 Phaser.Utils = {
     
     /**

@@ -1,7 +1,5 @@
 
-MainGame.GameState = function(game){
-	
-};
+MainGame.GameState = function(game){};
 
 MainGame.GameState.prototype = {
 	
