@@ -6,3 +6,16 @@
  * - Create several objects using the class.
  * - Test the objecs by calling their properties and using their methods in the console.
  */
+
+import Computer from "./Computer.js";
+ 
+
+const Apple = new Computer(
+    "Apple Mac Book Pro ",
+    "INFLEXIBLE",
+    3000,
+);
+
+console.log(Apple.model);
+
+console.log(Apple);
