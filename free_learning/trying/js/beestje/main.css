@@ -1,0 +1,7 @@
+.beestje{
+	position: absolute;
+	top:30px;
+	left: 0px;
+	/*animation-timing-function: linear;*/
+	/*transition: left .1s linear 0s;*/
+}

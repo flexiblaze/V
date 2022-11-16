@@ -66,7 +66,7 @@ const poohPhil = new Book(
   108,
   "Reading"
 )
-console.log(poohPhil);
+console.log(poohPhil); 
 
 const zen = new Book(
   "Zen and the Art of Motorcycle Maintenance",
