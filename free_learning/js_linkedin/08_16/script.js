@@ -6,6 +6,12 @@
  * - Append each backpack object to the <main> element.
  */
 import Backpack from "./components/Backpack.js";
+import backpackObjectArray from "./components/data.js";
+
+
+
+
+
 
 const everydayPack = new Backpack(
   "pack01",

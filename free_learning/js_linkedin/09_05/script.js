@@ -74,6 +74,7 @@ const backpackList = backpackObjectArray.map((backpack) => {
 
   button.addEventListener("click", (event) => {
     console.log(event)
+    button.innerText = "changed!"
     status.innerText === "open" ? status.innerText = "closed" : status.innerText = "open"
   })
 
