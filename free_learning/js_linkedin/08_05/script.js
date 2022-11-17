@@ -16,9 +16,16 @@ const greenPack = {
     console.log("this.volume in the method:", this.volume);
     this.volume = volume;
     console.log("this.volume after update:", this.volume);
-    // (function () {
-    //   console.log("this.volume in nested function:", this.volume);
-    // })();
+
+    // hosted out for the globaal scope  thats why he gets 20
+     (function () {
+       console.log("this.volume in nested function:", this.volume);
+     })();
+
+     // ARROW FUNCTION DOES NOT HAVE (THIS)
+     (() => {
+      console.log("this.volume in nested function:", this.volume);
+    })();
   },
 };
 

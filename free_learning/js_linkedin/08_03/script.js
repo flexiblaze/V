@@ -23,5 +23,8 @@ const addPack = function (currentPack) {
   return newArticle;
 };
 
-const main = document.querySelector("main");
+const theArticle =addPack(greenPack);
+console.log(theArticle);
+
+const main = document.querySelector("main"); // contaninng the main element from html document
 main.append(addPack(greenPack));
