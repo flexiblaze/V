@@ -1,0 +1,90 @@
+header h1{
+    color: green;
+    font-size: 50px;
+    text-align: center;
+}
+header img{
+    float: left;
+    width: 100px;
+    height: 100px;
+
+}
+.active {
+    background-color: green;
+}
+h2{
+    font-size: 25px;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 0px 5px lightblue,0px -5px 5px lightseagreen;
+
+}
+header h1{
+    color: white;
+}
+body{
+    background-color: green;
+}
+body p{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+footer {
+    position: bottom;
+    left: 8px;
+    bottom: 3px;
+    right: 8px;
+    width: 95%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+@media screen and (max-width:500px) {
+    .navbar {
+        width: 100%;
+        background-color: green;
+        overflow: auto;
+    }
+
+    /* Navbar links */
+    .navbar a {
+        float: left;
+        text-align: center;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+    /* Navbar links on mouse-over */
+    .navbar a:hover {
+        background-color: green;
+    }
+
+    img{
+        max-width: 100%;
+        height: auto;
+
+
+    }
+
+.time{
+    font-size: medium;
+}}
+
+.name{
+    color: white;
+    text-align: center;
+}
+.email{
+    color: white;
+    text-align: center;
+}
+.bericht{
+    color: white;
+    text-align: center;
+}
+.input{
+    text-align: center;
+}
