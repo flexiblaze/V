@@ -72,6 +72,8 @@ const backpackList = backpackObjectArray.map((backpack) => {
   const button = backpackArticle.querySelector(".lid-toggle")
   const status = backpackArticle.querySelector(".backpack__lid span")
 
+   
+
   button.addEventListener("click", (event) => {
     console.log(event)
     button.innerText = "changed!"

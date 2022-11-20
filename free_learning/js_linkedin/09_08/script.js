@@ -9,6 +9,7 @@
  * - Add event listener to each of the strap length forms.
  * - Update strap length value with value submitted from form.
  */
+
 import backpackObjectArray from "./components/data.js";
 
 /**
