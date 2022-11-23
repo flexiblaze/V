@@ -135,6 +135,7 @@ console.log(result3)
 //les 7
 // we u are comparing u will get boolean
 // we can compare 2 strings  ASCII values the machine will look for alfabet and if pen and pencil= pencil is bigger
+
 let data1 = ''
 let data2 = false
 
@@ -248,3 +249,13 @@ switch(dag){
 }    
 
 // go video 15
+
+let ff = prompt("write a number")
+
+
+if (ff %2===0 ) {
+     console.log("even number");
+}else{
+     console.log("Odd number");
+}
+
