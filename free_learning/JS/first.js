@@ -146,3 +146,105 @@ console.log(data3);
 // IF DEBUGGING IS REMOVING BUGS THEN CODING IS ADDING BUGS
 // EVERYTIME U WRITE A CODE U MAYBE WRITE A BUGS IN YOUR CODS
 
+//les 8
+
+// And &
+// OR ||
+// Not !
+
+let  f =  7, g = 2, t =5
+
+let result5 = f< y || f < t
+
+let resullt6 = !result5
+
+console.log(result5)
+
+
+// les 9
+// if else
+ let six = 6
+ let four = 4
+ let seven = 7
+
+
+
+ if(six > four && six > seven){
+     console.log("num1 is greater")
+ }else if(four > six && four > seven){
+     console.log("num 2 is greater");
+     console.log('Ö');
+ }else{
+      console.log("tested last opinion");
+ }
+
+ console.log("omer");
+
+ // assigement
+ function oddEven(num) {
+     if(num % 2 === 0) {
+       num = 'even';
+     }else {
+       num = 'odd';
+     }
+     return num;
+   }
+
+   console.log(oddEven(4));
+
+// les 8
+
+let s = 4
+let result8 
+
+result8 = s%2===0 ? "even" :  "Odd"
+
+if (s %2===0 ) {
+     console.log("even number");
+}else{
+     console.log("Odd number");
+}
+
+// les 9
+
+// mon - 7am   
+// tue thurs 4 am
+// fri 9 am
+// sat sun - 8 am
+
+let day = "Thursday";
+        if (day === "Monday") {
+          console.log("7 am");
+        } else if (day === "Tuesday" || "Wednesday" || "Thursday") {
+          console.log("4 am");
+        } else if (day === "Friday") {
+          console.log("9am");
+        } else {
+          console.log("8 am");
+        }
+
+let dag = "Holiday"
+
+// default and break are important
+
+switch(dag){
+     case 'Monday':
+     console.log("7 am");
+     break;
+     case 'Tuesday':
+     case 'Wednesday':
+     case 'Thursday':
+     console.log("4 am");
+     break;
+     case 'Friday':
+     console.log("9 am");
+     break;
+     case 'Saturday':
+     case 'Sunday':
+     console.log("8 am");
+     break;
+     default: 
+     console.log("Ömer");
+}    
+
+// go video 15
