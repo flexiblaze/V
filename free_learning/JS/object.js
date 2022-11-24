@@ -27,3 +27,30 @@ console.log(alien.work_exp);     // same
 
 
 // video #20 
+// 
+
+let students = {
+    name: 'Ömer',
+    tech: 'JS',
+    laptop: {
+        cpu: 'i7',
+        ram: 4,
+        brand: 'Asus' 
+    }
+}
+
+delete students.name 
+
+console.log(students);
+
+console.log(students.laptop.brand?.length)
+
+
+// for in loop  !!!! important  with for in loop u can get objects
+
+for(let key in students.laptop){
+    console.log(key,students.laptop[key]);
+}
+
+
+
