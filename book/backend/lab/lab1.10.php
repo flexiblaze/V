@@ -42,7 +42,29 @@
     <input type="submit" width="300px" name="verzenden" value=" Bestellen " />
 
 </div>
-
 </form>
-
 </html>
+<?php
+
+$korting = 0;
+$besteldeAlbums= 0;
+
+
+if( isset($_POST["aantal"][0])){
+     $besteldeAlbums = $besteldeAlbums + ($_POST["aantal"][0]);
+     echo "<br>" . "Bestelde albums: ". $besteldeAlbums;
+} 
+
+if(isset($_POST["student"], $_POST["klant"])){
+    $korting = $korting + 25;
+    echo "<br>" . "Korting is: " . $korting . "%";
+}elseif(isset($_POST["student"])){
+    $korting = $korting +15;
+    echo "<br>" . "Korting is: " . $korting . "%";
+}elseif( isset($_POST["klant"])) {
+  $korting = $korting + 10;
+  echo "<br>" . "Korting is: " . $korting . "%";
+}
+
+
+?>
