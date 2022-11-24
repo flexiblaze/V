@@ -39,7 +39,16 @@
     Student: 15%<br />
     <input type="checkbox" name="klant" value="10" />
     Klant: 10%<br />
-    <input type="submit" width="300px" name="verzenden" value=" Bestellen " />
+    
+    <form name="order" action="" method="post">
+        <p>Selecteer een betalingswijze:</p>
+   <select name="betaling" value="true">
+<option value="paypal">PayPal</option>
+<option value="visa">Visa</option>
+<option value="MasterCard">MasterCard</option>
+<option value="Ideal">Ideal</option>
+</select>
+<input type="submit" name="submit" value="Bestellen">
 
 </div>
 </form>
@@ -66,17 +75,6 @@ if(isset($_POST["student"], $_POST["klant"])){
   echo "<br>" . "Korting is: " . $korting . "%";
 }
 ?>
-
-<form name="order" action="" method="post">
-        <p>Selecteer een betalingswijze:</p>
-   <select name="betaling" value="true">
-<option value=" "></option>
-<option value="paypal">PayPal</option>
-<option value="visa">Visa</option>
-<option value="MasterCard">MasterCard</option>
-<option value="Ideal">Ideal</option>
-</select>
-<input type="submit" name="submit" value="Bestellen">
 
 <?php
 
