@@ -74,9 +74,29 @@ if(isset($_POST["student"], $_POST["klant"])){
   $korting = $korting + 10;
   echo "<br>" . "Korting is: " . $korting . "%";
 }
-?>
+if(isset($_POST["submit"])){
 
-<?php
+    switch ($_POST['betaling']) {
+
+        case "paypal":
+            echo "<p> Betalingswijze: Paypal </p>";
+            break;
+
+            case "visa":
+                echo "<p> Betalingswijze: Visa  </p>";
+                break;
+                
+                case "Mastercard":
+                    echo "<p> Betalingswijze: Mastercard  </p>";
+                    break;
+
+                    case "Ideal":
+                        echo "<p> Betalingswijze: Ideal  </p>";
+                        break;    
+                        default:
+            echo "<p> U heeft geen betalingswijze gekozen</p>"; 
+    }
+}
 
 
 ?>

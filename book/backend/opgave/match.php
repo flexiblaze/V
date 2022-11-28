@@ -25,7 +25,7 @@
 $land = 'Spanje';
 
 $retourtje = match ($land){
-
+    // IK WEET WAAROM KRIJG IK DEZE ERROR WANT MIJN PHP 7.3 BLA BLA BLA NIET 8.1
     'Nederland'=> 'Retourtje Nederland is 100',
    'Belgie' => 'Retourtje Belgie is 100',
    'Duitsland' => 'Retourtje Duitsland is 100',
