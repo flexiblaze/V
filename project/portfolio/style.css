@@ -3,6 +3,68 @@ body{
 }
 
 nav{
-
-    text-align: center;
+    font-family: 'Slim Jim', 'Impact', 'Arial Black', sans-serif;
 }
+
+
+*{transition:all 0.3s ease-in-out;}
+
+.container{
+  clear:both;
+  overflow:auto;
+}
+
+nav{float:right;}
+
+.logo img{float:left;}
+
+ul li{
+  display: inline-block; padding:20px;
+  font-size:60px; font-family:raleway;
+}
+
+ul li:hover{
+  color:white;
+  
+}
+
+li a{
+    text-decoration: none;
+    color:  white;
+}
+
+.welcome{
+    text-align: center;
+    color: white;
+}
+ h1{
+    font-size: 130px;
+    font-family:"Segoe Script" ;
+}
+p{
+    font-family: "Palatino Linotype";
+    font-size: 30;
+}
+
+.column {
+    align-items: center;
+    width: 33.33%;
+    padding: 80px;
+    display: inline;
+    margin-right: 90px;
+  }
+  
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .socials{
+
+    color: white;
+    font-size: 40px;
+    margin: 10px;
+    display: inline;
+  }
+  
