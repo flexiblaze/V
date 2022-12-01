@@ -1,3 +1,24 @@
+<?php
+	
+	include 'config.php';
+
+	if (isset($_POST['post_comment'])) {
+
+		$name = $_POST['name'];
+		$message = $_POST['message'];
+		
+		$sql = "INSERT INTO comments (name, message)
+		VALUES ('$name', '$message')";
+
+		if ($conn->query($sql) === TRUE) {
+		  echo "";
+		} else {
+		  echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +39,7 @@
           </div>
         <nav>
           <ul>
-            <li><a href="">Work</a></li>
+            <li><a href="#work">Work</a></li>
             <li><a href="">About</a></li>
             <li><a href="">Cv</a></li>
             <li><a href="">Contact</a></li>
@@ -44,15 +65,12 @@
             <img src="Icon awesome-money-check-alt.png" alt="" style="width:3%">
           </div>
           <div class="column">
-            <img src="arkaplansiz_beyaz_logo.png" alt="" style="width:3%">
-          </div>
-          <div class="column">
             <img src="Icon awesome-book-open.png" alt="" style="width:3%">
           </div>
 
       </div>
 
-
+      
       <footer>
 
         <div class="socials">
@@ -61,14 +79,38 @@
           <a href="https://github.com/flexiblaze"><img src="Icon awesome-github.png" alt=""></a>
           <a href="https://youtube.com"><img src="Icon awesome-youtube.png" alt=""></a>
         </div>
-
-
-
-
       </footer>
+      <br><br>
 
+      <div class="wrapper">
+		<form action="" method="post" class="form">
+			<input type="text" class="name" name="name" placeholder="Name">
+			<br>
+			<textarea name="message" cols="30" rows="10" class="message" placeholder="Message"></textarea>
+			<br>
+			<button type="submit" class="btn" name="post_comment">Post Comment</button>
+		</form>
+	</div>
 
+	<div class="content">
+		<?php
 
+			$sql = "SELECT * FROM comments";
+			$result = $conn->query($sql);
+
+			if ($result->num_rows > 0) {
+			  // output data of each row
+			  while($row = $result->fetch_assoc()) {
+			   
+		?>
+		<h3><?php echo $row['name']; ?></h3>
+		<p><?php echo $row['message']; ?></p>
+
+		<?php } } ?>
+	</div>
+
+      
+     
 
 </body>
 </html>
