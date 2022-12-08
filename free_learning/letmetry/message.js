@@ -7,12 +7,10 @@ function msg(){
 /* multi line comment  */  
 // short line comment
 
-
-
 function numbers(){
 
-    for(let i =1; j<100)
-}
+    for(let i =1; j<100;)
+};
 
 numbers(i=100);
 
