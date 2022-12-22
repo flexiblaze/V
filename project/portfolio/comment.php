@@ -1,21 +1,27 @@
 <?php
-include("connectiondatabase.php");
 
-       // function code($name,$email,$comment){
-        if(isset($_POST["submit"])){
-        $name = $_POST["name"];
-        $message = $_POST["message"];
-        
+    function setComments($conn){
+        if(isset($_POST['post_comment'])){
+           $name = $_POST['name'];
+            $message = $_POST['message'];
 
-        $query = "INSERT INTO comments (name, message) VALUES (:name, :message )";
-        $query_run = $conn->prepare($query);
 
-        $data = [
-            ':name' => $name,
-            ':message' => $message,
-        ];
-        $query_execute = $query_run->execute($data);
-        
+            $sql = "INSERT INTO  comments(name, message) VALUES('$name', '$message')";
+            $result =$conn->query($sql);
+           
+        }
     }
-   
+
+    function getComments($conn){
+        $sql = "SELECT * FROM comments";
+        $result = $conn->query($sql);
+        while($row = $result->fetch_assoc()){
+            echo"<div class='comment-box'><p>";
+                echo $row['name']."<br>";
+                echo $row['message']."<br>";   
+            echo"</p></div>";
+        }
+    }
+
+ 
 ?>

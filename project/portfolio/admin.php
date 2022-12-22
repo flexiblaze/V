@@ -1,40 +1,39 @@
-<?php
-
-include("connectiondatabase.php");
-
-$query = "SELECT * FROM comments";
-$com = $conn -> prepare($query);
-
-if(isset($_GET['Id'])) {
-
-  try {
-    $stmt = $conn->prepare("DELETE FROM comments WHERE Id = :Id");
-    $stmt->bindParam(":Id", $_GET['Id']);
-    $stmt->execute();
-  } catch(PDOException $e) {
-    echo $e->getMessage();
-  }
-}
-
- 
-
-$stmt = $conn->query("SELECT * FROM comments");
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-<table>
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Message</th>
-<th>Action</th>
-</tr>
-
-<?php foreach($rows as $row): ?>
-<tr>
-<td><?php echo $row['Id']; ?></td>
-<td><?php echo $row['name']; ?></td>
-<td><?php echo $row['message']; ?></td>
-<td><a href="?Id=<?php echo $row['Id']; ?>">Delete</a></td>
-</tr>
-<?php endforeach; ?>
-</table>
+<?php   
+ include 'connection.php';  
+ $query = "SELECT * from `comments`";  
+ $run = mysqli_query($conn,$query);  
+ ?>  
+ <!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>Delete Data From Database in PHP</title>  
+      <link rel="stylesheet" type="text/css" href="style/admin2.css">  
+ </head>  
+ <body>  
+ <header></header>  
+ <table border="1" cellspacing="0" cellpadding="0">  
+      <tr class="heading">  
+           <th>ID</th>  
+           <th>NAME</th>  
+           <th>MESSAGE Name</th>  
+      </tr>  
+      <?php   
+      $i=1;  
+           if ($num = mysqli_num_rows($run)>0) {  
+                while ($result = mysqli_fetch_assoc($run)) {  
+                     echo "  
+                          <tr class='data'>  
+                          <td>".$i++."</td>  
+                               <td>".$result['Id']."</td>  
+                               <td>".$result['name']."</td>  
+                               <td>".$result['message']."</td>  
+                               <td><a href='delete.php?Id=".$result['Id']."' Id='btn'>Delete</a></td>  
+                          </tr>  
+                     ";  
+                }  
+           }  
+      ?>  
+ </table>  
+ </body>  
+ </html>  

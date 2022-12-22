@@ -1,21 +1,7 @@
 <?php
-	
-	include 'config.php';
 
-	if (isset($_POST['post_comment'])) {
-
-		$name = $_POST['name'];
-		$message = $_POST['message'];
-		
-		$sql = "INSERT INTO comments (name, message)
-		VALUES ('$name', '$message')";
-
-		if ($conn->query($sql) === TRUE) {
-		  echo "";
-		} else {
-		  echo "Error: " . $sql . "<br>" . $conn->error;
-		}
-	}
+include 'comment.php';
+include 'connection.php';
 
 ?>
 
@@ -30,6 +16,7 @@
    <link rel="stylesheet" href="style/style.css">
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <title>Ömer</title>
 </head>
 <body>
@@ -37,6 +24,7 @@
         <div class="logo">
           <img src="logo.png" alt="" width="130"/>
           </div>
+
         <nav>
           <ul>
             <li><a href="#work">Work</a></li>
@@ -70,7 +58,7 @@
 
       </div>
 
-      
+      </body>  
       <footer>
 
         <div class="socials">
@@ -82,35 +70,20 @@
       </footer>
       <br><br>
 
-      <div class="wrapper">
-		<form action="" method="post" class="form">
-			<input type="text" class="name" name="name" placeholder="Name">
-			<br>
-			<textarea name="message" cols="30" rows="10" class="message" placeholder="Message"></textarea>
-			<br>
-			<button type="submit" class="btn" name="post_comment">Post Comment</button>
-		</form>
-	</div>
-
-	<div class="content">
-		<?php
-
-			$sql = "SELECT * FROM comments";
-			$result = $conn->query($sql);
-
-			if ($result->num_rows > 0) {
-			  // output data of each row
-			  while($row = $result->fetch_assoc()) {
-			   
-		?>
-		<h3><?php echo $row['name']; ?></h3>
-		<p><?php echo $row['message']; ?></p>
-
-		<?php } } ?>
-	</div>
-
       
-     
 
-</body>
+  <?php
+    echo "<div class='wrapper'>
+        <form method='POST' class'form' action='".setComments($conn)."'>
+			  <input type='text' class='name' name='name' placeholder='Name'>
+			  <br>
+			  <textarea name='message' cols='30' rows='10' class='message' placeholder='Message'></textarea>
+			  <br>
+			  <button type='submit' class='btn' name='post_comment'>Post Comment</button>
+		    </form>
+        </div>";
+
+        getComments($conn);
+?>
+
 </html>
