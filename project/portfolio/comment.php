@@ -1,5 +1,6 @@
 <?php
 
+// to set the comments
     function setComments($conn){
         if(isset($_POST['post_comment'])){
            $name = $_POST['name'];
@@ -12,6 +13,7 @@
         }
     }
 
+    // to write the comments 
     function getComments($conn){
         $sql = "SELECT * FROM comments";
         $result = $conn->query($sql);

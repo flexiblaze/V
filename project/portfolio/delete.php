@@ -1,4 +1,6 @@
 <?php  
+
+// delete function to delete things
  
  include 'connection.php';  
 

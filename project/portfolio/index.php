@@ -20,11 +20,12 @@ include 'connection.php';
 <title>Ömer</title>
 </head>
 <body>
+
     <div class="container">
         <div class="logo">
-          <img src="logo.png" alt="" width="130"/>
+          <img src="images/logo.png" alt="" width="130"/>
           </div>
-
+<!-- -->
         <nav>
           <ul>
             <li><a href="#work">Work</a></li>
@@ -63,9 +64,9 @@ include 'connection.php';
 
         <div class="socials">
           <p>Socials:</p>
-          <a href="https://www.linkedin.com/in/%C3%B6mer-warmtea-08161321a/"><img src="Icon awesome-linkedin.png" alt=""></a>
-          <a href="https://github.com/flexiblaze"><img src="Icon awesome-github.png" alt=""></a>
-          <a href="https://youtube.com"><img src="Icon awesome-youtube.png" alt=""></a>
+          <a href="https://www.linkedin.com/in/%C3%B6mer-warmtea-08161321a/"><img src="images/Icon awesome-linkedin.png" alt=""></a>
+          <a href="https://github.com/flexiblaze"><img src="images/Icon awesome-github.png" alt=""></a>
+          <a href="https://youtube.com"><img src="images/Icon awesome-youtube.png" alt=""></a>
         </div>
       </footer>
       <br><br>
