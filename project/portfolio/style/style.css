@@ -1,86 +1,204 @@
-body{
-    background-image: linear-gradient(rgb(25, 134, 25), rgb(56, 50, 50));
-    scroll-behavior: smooth;
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-family: 'Roboto', sans-serif;
+html{
+	scroll-behavior: smooth !important;
 }
+
+body{
+
+  background-image: linear-gradient(rgb(25, 134, 25), rgb(56, 50, 50));
+	font-family: "Segoe Script", "Inter" sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* BODY SECTION IN INDEX.PHP */
+
+
+/* HEADER */
+.navigation{
+  height: 100px; 
+  width: 100%;
+  margin-bottom: 300px;
+}
+#img{
+  background-image: url('2.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px;
+}
+
 
 nav{
-    font-family: 'Slim Jim', 'Impact', 'Arial Black', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 40px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.logo{
+  width: 200px;
+}
+
+nav ul li{
+  list-style-type: none;
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+nav ul li a{
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 50px;
 }
 
 
-*{transition:all 0.3s ease-in-out;}
-
-.container{
-  clear:both;
-  overflow:auto;
-}
-
-nav{float:right;}
-
-.logo img{
-  margin-left: 40%;
-
-}
-
-ul li{
-  display: inline-block; padding:20px;
-  font-size:60px; font-family:raleway;
-}
-
-ul li:hover{
-  color:white;
+nav ul li a:hover{
+  color:green;
+  transition: .3s ease-in-out;
   
 }
 
-li a{
-    text-decoration: none;
-    color:  white;
-}
+/* INTRO */
 
 .welcome{
+    display: block;
     text-align: center;
     color: white;
 }
- h1{
+ #intro{
     font-size: 130px;
     font-family:"Segoe Script" ;
 }
 p{
     font-family: "Palatino Linotype";
-    font-size: 30;
+    font-size: 30px;
 }
+
+hr{
+  margin: 0;
+}
+
+/* INTRO ICONS */
 
 .column {
     align-items: center;
     width: 33.33%;
     padding: 80px;
     display: inline;
-    margin-right: 90px;
+    margin-right: 110px;
+  }
+
+  .row{
+    margin:100px 100px 100px 200px;
+    
   }
   
-  .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
+  /* ABOUT */
 
-  .socials{
-
+  #about{
+    font-size: 50px;
     color: white;
-    font-size: 40px;
-    margin: 10px;
-    display: inline;
+    text-decoration: underline;
   }
+
+  #container{
+    border: none;
+    height: 500px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+
+  }
+  section{
+    margin-bottom: 200px;
+  }
+
+  /* WORK */
+
+  .title-text{
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 200px;
+  }
+
+  .big-box{
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    
+}
+
+.childeren{
+  margin-left: 40px;
+  color: white;
+}
+.titel-childeren{
+  font-size: 40px;
+}
+
+
+.childeren:hover{
+  font-size: 60px;
+transition: .4s;
+}
+
+#avatar{
+  border-radius: 10%;
+  height: 200px;
+}
+
+  
+/* CV  */
+
+#cv-part{
+    color: white;
+    text-align: center;
+  }
+
+
+  #dowloand{
+    text-decoration: underline;
+    color: black;
+  }
+
+/* CONTACT */
+
+#contact{
+  text-align: center;
+  color: white;
+}
+
+/* FOOTER SOCIALS */
+
+footer{
+  text-align: center;
+}
+
+.socials{
+
+  color: white;
+  font-size: 40px;
+  margin: 10px;
+  display: inline;
+}
+
+  /* COMMENT SECTION IN INDEX.PHP */
   .wrapper {
     background:transparent;
     border-radius: 10px;
-    width: 500px;
     height: 300px;
     display: flex;
     justify-content: center;
@@ -90,7 +208,7 @@ p{
     
   }
   
-  .wrapper .form input {
+  .wrapper input.name {
     background: #222222;
     color: white;
     font-size: 15px;
@@ -103,7 +221,7 @@ p{
     margin-top: 20px;
   }
   
-  .wrapper .form textarea {
+  .wrapper  textarea.message {
     background: #222222;
     color: white;
     font-size: 15px;
@@ -115,7 +233,7 @@ p{
     resize: none;
   }
   
-  .wrapper .form .btn {
+  .wrapper button.btn {
     background: #222222;
     color: white;
     font-size: 15px;
@@ -133,11 +251,13 @@ p{
     transition: 0.3s all ease;
   }
   
-  .wrapper .form .btn:hover {
+  .wrapper button.btn:hover {
     opacity: 1;
   }
+
+  /* COMMENT SECTION */
   
-  .content {
+  .comment-box {
     text-align: center;
     background: transparent;
     color: white;
@@ -146,9 +266,12 @@ p{
     border-radius: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    font-family: 'Space Grotesk';
+    margin-left: auto;
+    margin-right: auto;
   }
   
-  .content p {
+  .comment-box p {
     margin-bottom: 15px;
     width: 450px;
   }

@@ -1,24 +1,35 @@
-<?php   
- include 'connection.php';  
+<?php  
+
+ session_start();
+ include 'connection.php'; 
+ 
  $query = "SELECT * from `comments`";  
  $run = mysqli_query($conn,$query);  
- ?>  
+ 
+
+ ?>
  <!DOCTYPE html>  
  <html>  
  <head>  
       <meta charset="utf-8">  
-      <title>Delete Data From Database in PHP</title>  
-      <link rel="stylesheet" type="text/css" href="style/admin2.css">  
+      <title>Admin</title>  
+      <link rel="stylesheet" type="text/css" href="style/admin.css">  
  </head>  
  <body>  
  <header></header>  
  <table border="1" cellspacing="0" cellpadding="0">  
       <tr class="heading">  
+           <th>Row</th>  
            <th>ID</th>  
-           <th>NAME</th>  
-           <th>MESSAGE Name</th>  
+           <th>Name</th>  
+           <th>Message</th>
+           <th>Manage</th>
       </tr>  
-      <?php   
+      
+
+<!-- Table Of Data -->
+     <?php
+
       $i=1;  
            if ($num = mysqli_num_rows($run)>0) {  
                 while ($result = mysqli_fetch_assoc($run)) {  
@@ -33,7 +44,11 @@
                      ";  
                 }  
            }  
+         
+       
       ?>  
+
+
  </table>  
  </body>  
  </html>  

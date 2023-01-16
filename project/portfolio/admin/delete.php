@@ -9,7 +9,7 @@
       $query = "DELETE FROM `comments` WHERE Id = '$Id'";  
       $run = mysqli_query($conn,$query);  
       if ($run) {  
-           header('location:index.php');  
+           header('location:/Coding_1/project/portfolio/index.php');  
       }else{  
            echo "Error: ".mysqli_error($conn);  
       }  
