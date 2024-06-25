@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to Chart.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            width: 45%;
+            height: 300px;
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .delete-button, .chart-type-selector {
+            position: absolute;
+            top: 10px;
+            z-index: 1000;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 3px;
+            outline: none;
+        }
+        .delete-button {
+            right: 10px;
+            background: red;
+            color: white;
+        }
+        .chart-type-selector {
+            left: 10px;
+            background: #007bff;
+            color: white;
+        }
+        .new-chart-selector {
+            background: #1e3a8a;
+            color: white;
+        }
+        .new-chart-container {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #e5e7eb;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .new-chart-container select,
+        .new-chart-container button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        #charts-container {
+            text-align: center;
+        }
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Unlimited Energy</h1>
+    <div class="new-chart-container">
+        <select id="new-chart-type" class="new-chart-selector">
+            <option value="line">Line</option>
+            <option value="bar">Bar</option>
+            <option value="pie">Pie</option>
+            <option value="doughnut">Doughnut</option>
+            <option value="radar">Radar</option>
+        </select>
+        <select id="new-chart-parameter" class="new-chart-selector"></select>
+        <button id="add-new-chart" class="new-chart-selector">Add New Chart</button>
+    </div>
+    <div id="charts-container"></div>
+
+    <script>
+        let charts = [];
+        let parameters = [];
+        let timeLabels = [];
+
+        // Function to fetch and parse CSV file
+        function fetchAndParseCSV(url) {
+            return new Promise((resolve, reject) => {
+                Papa.parse(url, {
+                    download: true,
+                    complete: function(results) {
+                        resolve(results.data);
+                    },
+                    error: function(error) {
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+        // Function to create chart config from CSV data
+        function createChartConfigs(csvData) {
+            // Extract the time labels from the first row
+            timeLabels = csvData[3].slice(1);
+            parameters = csvData.slice(4).map(row => ({
+                label: row[0],
+                data: row.slice(1).map(Number)
+            }));
+
+            return parameters.map((param, index) => ({
+                type: 'line',
+                data: {
+                    labels: timeLabels,
+                    datasets: [{
+                        label: param.label,
+                        data: param.data,
+                        borderColor: `rgba(${index * 30 % 255}, ${(index * 60 + 50) % 255}, ${(index * 90 + 100) % 255}, 1)`,
+                        backgroundColor: `rgba(${index * 30 % 255}, ${(index * 60 + 50) % 255}, ${(index * 90 + 100) % 255}, 0.2)`,
+                        borderWidth: 2,
+                        pointBackgroundColor: `rgba(${index * 30 % 255}, ${(index * 60 + 50) % 255}, ${(index * 90 + 100) % 255}, 1)`,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: `rgba(${index * 30 % 255}, ${(index * 60 + 50) % 255}, ${(index * 90 + 100) % 255}, 1)`
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    family: 'Arial, sans-serif',
+                                    weight: 'bold'
+                                },
+                                color: '#333'
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleFont: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                size: 14
+                            },
+                            footerFont: {
+                                size: 12,
+                                style: 'italic'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Time',
+                                color: '#333',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            ticks: {
+                                color: '#333'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Value',
+                                color: '#333',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            ticks: {
+                                color: '#333'
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }));
+        }
+
+        // Function to populate the parameter dropdown
+        function populateParameterDropdown() {
+            const parameterDropdown = document.getElementById('new-chart-parameter');
+            parameterDropdown.innerHTML = '';
+            parameters.forEach((param, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.innerText = param.label;
+                parameterDropdown.appendChild(option);
+            });
+        }
+
+        // Function to delete a chart
+        function deleteChart(index) {
+            if (confirm('Are you sure you want to delete this chart?')) {
+                charts[index].destroy();
+                document.getElementById(`chart-container-${index}`).remove();
+                charts.splice(index, 1);
+                updateChartIds(); // Update the IDs of remaining charts
+                saveChartsToLocalStorage();
+            }
+        }
+
+        // Function to update the chart type
+        function updateChartType(index, newType) {
+            const chart = charts[index];
+            chart.config.type = newType;
+            chart.update();
+            saveChartsToLocalStorage();
+        }
+
+        // Function to create a new chart
+        function createNewChart() {
+            const selectedType = document.getElementById('new-chart-type').value;
+            const paramIndex = document.getElementById('new-chart-parameter').value;
+            const param = parameters[paramIndex];
+
+            const chartConfig = {
+                type: selectedType,
+                data: {
+                    labels: timeLabels,
+                    datasets: [{
+                        label: param.label,
+                        data: param.data,
+                        borderColor: `rgba(${paramIndex * 30 % 255}, ${(paramIndex * 60 + 50) % 255}, ${(paramIndex * 90 + 100) % 255}, 1)`,
+                        backgroundColor: `rgba(${paramIndex * 30 % 255}, ${(paramIndex * 60 + 50) % 255}, ${(paramIndex * 90 + 100) % 255}, 0.2)`,
+                        borderWidth: 2,
+                        pointBackgroundColor: `rgba(${paramIndex * 30 % 255}, ${(paramIndex * 60 + 50) % 255}, ${(paramIndex * 90 + 100) % 255}, 1)`,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: `rgba(${paramIndex * 30 % 255}, ${(paramIndex * 60 + 50) % 255}, ${(paramIndex * 90 + 100) % 255}, 1)`
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    family: 'Arial, sans-serif',
+                                    weight: 'bold'
+                                },
+                                color: '#333'
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleFont: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                size: 14
+                            },
+                            footerFont: {
+                                size: 12,
+                                style: 'italic'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Time',
+                                color: '#333',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            ticks: {
+                                color: '#333'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Value',
+                                color: '#333',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            ticks: {
+                                color: '#333'
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+
+            const index = charts.length;
+
+            const div = document.createElement('div');
+            div.className = 'chart-container';
+            div.id = `chart-container-${index}`;
+
+            const canvas = document.createElement('canvas');
+            canvas.id = `chart-${index}`;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-button';
+            deleteButton.innerText = 'Delete';
+            deleteButton.onclick = () => deleteChart(index);
+
+            const chartTypeSelector = document.createElement('select');
+            chartTypeSelector.className = 'chart-type-selector';
+            ['line', 'bar', 'pie', 'doughnut', 'radar'].forEach(type => {
+                const option = document.createElement('option');
+                option.value = type;
+                option.innerText = type.charAt(0).toUpperCase() + type.slice(1);
+                chartTypeSelector.appendChild(option);
+            });
+            chartTypeSelector.value = selectedType;
+            chartTypeSelector.onchange = (e) => updateChartType(index, e.target.value);
+
+            div.appendChild(canvas);
+            div.appendChild(deleteButton);
+            div.appendChild(chartTypeSelector);
+            document.getElementById('charts-container').appendChild(div);
+
+            const chart = new Chart(canvas, chartConfig);
+            charts.push(chart);
+
+            saveChartsToLocalStorage();
+        }
+
+        // Function to update the IDs of chart containers and elements
+        function updateChartIds() {
+            charts.forEach((chart, index) => {
+                const container = document.querySelector(`#charts-container .chart-container:nth-child(${index + 1})`);
+                container.id = `chart-container-${index}`;
+                container.querySelector('canvas').id = `chart-${index}`;
+                const deleteButton = container.querySelector('.delete-button');
+                deleteButton.onclick = () => deleteChart(index);
+                const chartTypeSelector = container.querySelector('.chart-type-selector');
+                chartTypeSelector.onchange = (e) => updateChartType(index, e.target.value);
+            });
+        }
+
+        // Function to save charts to localStorage
+        function saveChartsToLocalStorage() {
+            const chartsData = charts.map((chart, index) => ({
+                type: chart.config.type,
+                data: chart.config.data.datasets[0].data,
+                label: chart.config.data.datasets[0].label,
+                borderColor: chart.config.data.datasets[0].borderColor,
+                backgroundColor: chart.config.data.datasets[0].backgroundColor,
+                timeLabels: chart.config.data.labels
+            }));
+            localStorage.setItem('charts', JSON.stringify(chartsData));
+        }
+
+        // Function to load charts from localStorage
+        function loadChartsFromLocalStorage() {
+            const chartsData = JSON.parse(localStorage.getItem('charts'));
+            if (chartsData && chartsData.length) {
+                chartsData.forEach((chartData, index) => {
+                    const chartConfig = {
+                        type: chartData.type,
+                        data: {
+                            labels: chartData.timeLabels,
+                            datasets: [{
+                                label: chartData.label,
+                                data: chartData.data,
+                                borderColor: chartData.borderColor,
+                                backgroundColor: chartData.backgroundColor,
+                                borderWidth: 2,
+                                pointBackgroundColor: chartData.borderColor,
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: chartData.borderColor
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'top',
+                                    labels: {
+                                        font: {
+                                            size: 14,
+                                            family: 'Arial, sans-serif',
+                                            weight: 'bold'
+                                        },
+                                        color: '#333'
+                                    }
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    backgroundColor: 'rgba(0,0,0,0.8)',
+                                    titleFont: {
+                                        size: 16,
+                                        weight: 'bold'
+                                    },
+                                    bodyFont: {
+                                        size: 14
+                                    },
+                                    footerFont: {
+                                        size: 12,
+                                        style: 'italic'
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    display: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Time',
+                                        color: '#333',
+                                        font: {
+                                            size: 14,
+                                            weight: 'bold'
+                                        }
+                                    },
+                                    ticks: {
+                                        color: '#333'
+                                    }
+                                },
+                                y: {
+                                    display: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Value',
+                                        color: '#333',
+                                        font: {
+                                            size: 14,
+                                            weight: 'bold'
+                                        }
+                                    },
+                                    ticks: {
+                                        color: '#333'
+                                    },
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    };
+
+                    const div = document.createElement('div');
+                    div.className = 'chart-container';
+                    div.id = `chart-container-${index}`;
+
+                    const canvas = document.createElement('canvas');
+                    canvas.id = `chart-${index}`;
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'delete-button';
+                    deleteButton.innerText = 'Delete';
+                    deleteButton.onclick = () => deleteChart(index);
+
+                    const chartTypeSelector = document.createElement('select');
+                    chartTypeSelector.className = 'chart-type-selector';
+                    ['line', 'bar', 'pie', 'doughnut', 'radar'].forEach(type => {
+                        const option = document.createElement('option');
+                        option.value = type;
+                        option.innerText = type.charAt(0).toUpperCase() + type.slice(1);
+                        chartTypeSelector.appendChild(option);
+                    });
+                    chartTypeSelector.value = chartData.type;
+                    chartTypeSelector.onchange = (e) => updateChartType(index, e.target.value);
+
+                    div.appendChild(canvas);
+                    div.appendChild(deleteButton);
+                    div.appendChild(chartTypeSelector);
+                    document.getElementById('charts-container').appendChild(div);
+
+                    const chart = new Chart(canvas, chartConfig);
+                    charts.push(chart);
+                });
+            }
+        }
+
+        // Main function to fetch CSV and create charts
+        async function main() {
+            try {
+                const csvData = await fetchAndParseCSV('Simulatie_data_Energietransitie.csv');
+                createChartConfigs(csvData);
+                populateParameterDropdown();
+                loadChartsFromLocalStorage();
+
+                // Button to create new charts
+                const newChartButton = document.getElementById('add-new-chart');
+                newChartButton.onclick = createNewChart;
+
+                // Initialize SortableJS on the charts container
+                new Sortable(document.getElementById('charts-container'), {
+                    animation: 150,
+                    onEnd: function (evt) {
+                        const item = charts.splice(evt.oldIndex, 1)[0];
+                        charts.splice(evt.newIndex, 0, item);
+                        updateChartIds(); // Update IDs after reordering
+                        saveChartsToLocalStorage();
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading or parsing CSV:', error);
+            }
+        }
+
+        // Run the main function
+        main();
+    </script>
+</body>
+</html>

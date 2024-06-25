@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WordFeud on CodePen</title>
+  <style>
+    :root {
+      --tl: #4863A6; /* triple letter value */
+      --tw: #7F3A3E; /* triple word value */
+      --dl: #729B67; /* double letter value */
+      --dw: #B77320; /* double word value */
+      --ct: #64415F; /* center color */
+      --letter: #F2EEE9; /* player letters background */
+      --lettercolor: #000;
+      --lightmono: #2C2F36;
+      --darkmono: #1D1D1D;
+      --tablesize: 600px;
+      --cellsize: calc(var(--tablesize) / 15);
+      --joker_tile_size: 40px;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      cursor: default;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--darkmono);
+      color: #fff;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 18px;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    header h1 {
+      font-weight: 100;
+      padding-top: 0;
+      margin-top: .25em;
+    }
+
+    header h1 span {
+      font-size: 14px;
+      opacity: 0.65;
+    }
+
+    #game {
+      width: var(--tablesize);
+      height: var(--tablesize);
+      margin: 1em auto;
+      background: var(--darkmono);
+    }
+
+    #game tr {
+      height: var(--cellsize);
+    }
+
+    #game td {
+      position: relative;
+      height: var(--cellsize);
+      width: var(--cellsize);
+      padding: 0;
+      border: 1px solid var(--darkmono);
+      border-radius: 4px;
+      border-collapse: collapse;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      background: var(--lightmono);
+    }
+
+    #game td.dragover {
+      background: #3A3A3A;
+      border-color: var(--lightmono);
+    }
+
+    #game td.tl {
+      background: var(--tl);
+    }
+
+    #game td.tl:before {
+      content: "tl";
+    }
+
+    #game td.tw {
+      background: var(--tw);
+    }
+
+    #game td.tw:before {
+      content: "tw";
+    }
+
+    #game td.dl {
+      background: var(--dl);
+    }
+
+    #game td.dl:before {
+      content: "dl";
+    }
+
+    #game td.dw {
+      background: var(--dw);
+    }
+
+    #game td.dw:before {
+      content: "dw";
+    }
+
+    #game td.ct {
+      background: var(--ct);
+    }
+
+    #game td.ct:before {
+      content: "☘";
+    }
+
+    .player {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 2em;
+      height: var(--cellsize);
+    }
+
+    .player ul,
+    .player ul li {
+      display: inline-block;
+      list-style: none;
+    }
+
+    .player li > div {
+      margin: 0 4px 0 0;
+    }
+
+    .player ul {
+      margin: 0;
+      padding: 0;
+      height: var(--cellsize);
+    }
+
+    #buttons {
+      clear: both;
+      margin-top: 1em;
+    }
+
+    .btn {
+      display: inline-block;
+      text-align: center;
+      padding: 6px 8px;
+      margin: 0 5px 1em;
+      border: none;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .get_new {
+      color: #CE2931;
+    }
+
+    [draggable="true"] {
+      user-drag: element;
+      cursor: move;
+    }
+
+    [draggable="true"]:active {
+      opacity: 0.4;
+    }
+
+    div.draggable_tile {
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      padding-left: 6px;
+      margin-right: 10px;
+      vertical-align: middle;
+      background: var(--letter);
+      color: var(--lettercolor);
+      position: relative;
+      border: 2px solid rgba(15, 15, 15, 0.5);
+      border-radius: 4px;
+      text-transform: uppercase;
+      text-align: left;
+      font-size: 34px;
+    }
+
+    .draggable_tile span {
+      font-size: 12px;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: block;
+      line-height: 1;
+    }
+
+    .tile_played > div {
+      width: 100%;
+      height: 100%;
+      line-height: 36px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 99;
+      font-size: 22px;
+      font-weight: normal;
+      border: none;
+      border-radius: 2px;
+      opacity: 0.8;
+    }
+
+    .tile_played > div span {
+      font-size: 12px;
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      display: block;
+      line-height: 1;
+    }
+
+    #joker_alphabet {
+      background: rgba(255, 255, 255, 0.8);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      z-index: 999;
+      color: #fff;
+      display: none;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
+
+    #joker_core {
+      background: var(--darkmono);
+      box-shadow: 1px 4px 42px #181818;
+      width: var(--tablesize);
+      text-align: center;
+      padding-bottom: 1em;
+    }
+
+    #joker_core h2 {
+      margin: 0;
+      padding: 1em 0 .5em;
+    }
+
+    #joker_core span,
+    #joker_core ins {
+      background: var(--lightmono);
+      display: inline-block;
+      width: var(--joker_tile_size);
+      height: var(--joker_tile_size);
+      line-height: var(--joker_tile_size);
+      vertical-align: middle;
+      text-align: center;
+      text-transform: uppercase;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    #joker_core span:hover,
+    #joker_core ins:hover {
+      background: var(--darkmono);
+    }
+
+    #joker_core ins {
+      background: #0c0c0c;
+      text-decoration: none;
+      cursor: help;
+      border-color: green;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WordFeud on CodePen <span>yay!</span></h1>
+  </header>
+  
+  <table id="game">
+    <tbody>
+      <tr id="r01">
+        <td id="r01s01" class="tl"></td>
+        <td id="r01s02"></td>
+        <td id="r01s03"></td>
+        <td id="r01s04"></td>
+        <td id="r01s05" class="tw"></td>
+        <td id="r01s06"></td>
+        <td id="r01s07"></td>
+        <td id="r01s08" class="dl"></td>
+        <td id="r01s09"></td>
+        <td id="r01s10"></td>
+        <td id="r01s11" class="tw"></td>
+        <td id="r01s12"></td>
+        <td id="r01s13"></td>
+        <td id="r01s14"></td>
+        <td id="r01s15" class="tl"></td>
+      </tr>
+      <tr id="r02">
+        <td id="r02s01"></td>
+        <td id="r02s02" class="dl"></td>
+        <td id="r02s03"></td>
+        <td id="r02s04"></td>
+        <td id="r02s05"></td>
+        <td id="r02s06" class="tl"></td>
+        <td id="r02s07"></td>
+        <td id="r02s08"></td>
+        <td id="r02s09"></td>
+        <td id="r02s10" class="tl"></td>
+        <td id="r02s11"></td>
+        <td id="r02s12"></td>
+        <td id="r02s13"></td>
+        <td id="r02s14" class="dl"></td>
+        <td id="r02s15"></td>
+      </tr>
+      <tr id="r03">
+        <td id="r03s01"></td>
+        <td id="r03s02"></td>
+        <td id="r03s03" class="dw"></td>
+        <td id="r03s04"></td>
+        <td id="r03s05" class="tw"></td>
+        <td id="r03s06"></td>
+        <td id="r03s07" class="dl"></td>
+        <td id="r03s08"></td>
+        <td id="r03s09" class="dl"></td>
+        <td id="r03s10"></td>
+        <td id="r03s11"></td>
+        <td id="r03s12"></td>
+        <td id="r03s13" class="dw"></td>
+        <td id="r03s14"></td>
+        <td id="r03s15" class="tl"></td>
+      </tr>
+      <tr id="r04">
+        <td id="r04s01"></td>
+        <td id="r04s02"></td>
+        <td id="r04s03"></td>
+        <td id="r04s04" class="tl"></td>
+        <td id="r04s05"></td>
+        <td id="r04s06"></td>
+        <td id="r04s07"></td>
+        <td id="r04s08" class="dw"></td>
+        <td id="r04s09"></td>
+        <td id="r04s10"></td>
+        <td id="r04s11"></td>
+        <td id="r04s12" class="tl"></td>
+        <td id="r04s13"></td>
+        <td id="r04s14"></td>
+        <td id="r04s15"></td>
+      </tr>
+      <tr id="r05">
+        <td id="r05s01" class="tw"></td>
+        <td id="r05s02"></td>
+        <td id="r05s03"></td>
+        <td id="r05s04"></td>
+        <td id="r05s05" class="dw"></td>
+        <td id="r05s06"></td>
+        <td id="r05s07" class="dl"></td>
+        <td id="r05s08"></td>
+        <td id="r05s09" class="dl"></td>
+        <td id="r05s10"></td>
+        <td id="r05s11" class="dw"></td>
+        <td id="r05s12"></td>
+        <td id="r05s13"></td>
+        <td id="r05s14"></td>
+        <td id="r05s15" class="tw"></td>
+      </tr>
+      <tr id="r06">
+        <td id="r06s01"></td>
+        <td id="r06s02" class="tl"></td>
+        <td id="r06s03"></td>
+        <td id="r06s04"></td>
+        <td id="r06s05"></td>
+        <td id="r06s06" class="tl"></td>
+        <td id="r06s07"></td>
+        <td id="r06s08"></td>
+        <td id="r06s09"></td>
+        <td id="r06s10" class="tl"></td>
+        <td id="r06s11"></td>
+        <td id="r06s12"></td>
+        <td id="r06s13"></td>
+        <td id="r06s14" class="tl"></td>
+        <td id="r06s15"></td>
+      </tr>
+      <tr id="r07">
+        <td id="r07s01"></td>
+        <td id="r07s02"></td>
+        <td id="r07s03" class="dl"></td>
+        <td id="r07s04"></td>
+        <td id="r07s05" class="dl"></td>
+        <td id="r07s06"></td>
+        <td id="r07s07"></td>
+        <td id="r07s08"></td>
+        <td id="r07s09"></td>
+        <td id="r07s10"></td>
+        <td id="r07s11" class="dl"></td>
+        <td id="r07s12"></td>
+        <td id="r07s13" class="dl"></td>
+        <td id="r07s14"></td>
+        <td id="r07s15"></td>
+      </tr>
+      <tr id="r08">
+        <td id="r08s01" class="dl"></td>
+        <td id="r08s02"></td>
+        <td id="r08s03"></td>
+        <td id="r08s04" class="dw"></td>
+        <td id="r08s05"></td>
+        <td id="r08s06"></td>
+        <td id="r08s07"></td>
+        <td id="r08s08" class="ct"></td>
+        <td id="r08s09"></td>
+        <td id="r08s10"></td>
+        <td id="r08s11"></td>
+        <td id="r08s12" class="dw"></td>
+        <td id="r08s13"></td>
+        <td id="r08s14"></td>
+        <td id="r08s15" class="dl"></td>
+      </tr>
+      <tr id="r09">
+        <td id="r09s01"></td>
+        <td id="r09s02"></td>
+        <td id="r09s03" class="dl"></td>
+        <td id="r09s04"></td>
+        <td id="r09s05" class="dl"></td>
+        <td id="r09s06"></td>
+        <td id="r09s07"></td>
+        <td id="r09s08"></td>
+        <td id="r09s09"></td>
+        <td id="r09s10"></td>
+        <td id="r09s11" class="dl"></td>
+        <td id="r09s12"></td>
+        <td id="r09s13" class="dl"></td>
+        <td id="r09s14"></td>
+        <td id="r09s15"></td>
+      </tr>
+      <tr id="r10">
+        <td id="r10s01"></td>
+        <td id="r10s02" class="tl"></td>
+        <td id="r10s03"></td>
+        <td id="r10s04"></td>
+        <td id="r10s05"></td>
+        <td id="r10s06" class="tl"></td>
+        <td id="r10s07"></td>
+        <td id="r10s08"></td>
+        <td id="r10s09"></td>
+        <td id="r10s10" class="tl"></td>
+        <td id="r10s11"></td>
+        <td id="r10s12"></td>
+        <td id="r10s13"></td>
+        <td id="r10s14" class="tl"></td>
+        <td id="r10s15"></td>
+      </tr>
+      <tr id="r11">
+        <td id="r11s01" class="tw"></td>
+        <td id="r11s02"></td>
+        <td id="r11s03"></td>
+        <td id="r11s04"></td>
+        <td id="r11s05" class="dw"></td>
+        <td id="r11s06"></td>
+        <td id="r11s07" class="dl"></td>
+        <td id="r11s08"></td>
+        <td id="r11s09" class="dl"></td>
+        <td id="r11s10"></td>
+        <td id="r11s11" class="dw"></td>
+        <td id="r11s12"></td>
+        <td id="r11s13"></td>
+        <td id="r11s14"></td>
+        <td id="r11s15" class="tw"></td>
+      </tr>
+      <tr id="r12">
+        <td id="r12s01"></td>
+        <td id="r12s02"></td>
+        <td id="r12s03"></td>
+        <td id="r12s04" class="tl"></td>
+        <td id="r12s05"></td>
+        <td id="r12s06"></td>
+        <td id="r12s07"></td>
+        <td id="r12s08" class="dw"></td>
+        <td id="r12s09"></td>
+        <td id="r12s10"></td>
+        <td id="r12s11"></td>
+        <td id="r12s12" class="tl"></td>
+        <td id="r12s13"></td>
+        <td id="r12s14"></td>
+        <td id="r12s15"></td>
+      </tr>
+      <tr id="r13">
+        <td id="r13s01"></td>
+        <td id="r13s02"></td>
+        <td id="r13s03" class="dw"></td>
+        <td id="r13s04"></td>
+        <td id="r13s05" class="tw"></td>
+        <td id="r13s06"></td>
+        <td id="r13s07" class="dl"></td>
+        <td id="r13s08"></td>
+        <td id="r13s09" class="dl"></td>
+        <td id="r13s10"></td>
+        <td id="r13s11"></td>
+        <td id="r13s12"></td>
+        <td id="r13s13" class="dw"></td>
+        <td id="r13s14"></td>
+        <td id="r13s15" class="tl"></td>
+      </tr>
+      <tr id="r14">
+        <td id="r14s01"></td>
+        <td id="r14s02" class="dl"></td>
+        <td id="r14s03"></td>
+        <td id="r14s04"></td>
+        <td id="r14s05"></td>
+        <td id="r14s06" class="tl"></td>
+        <td id="r14s07"></td>
+        <td id="r14s08"></td>
+        <td id="r14s09"></td>
+        <td id="r14s10" class="tl"></td>
+        <td id="r14s11"></td>
+        <td id="r14s12"></td>
+        <td id="r14s13"></td>
+        <td id="r14s14" class="dl"></td>
+        <td id="r14s15"></td>
+      </tr>
+      <tr id="r15">
+        <td id="r15s01" class="tl"></td>
+        <td id="r15s02"></td>
+        <td id="r15s03"></td>
+        <td id="r15s04"></td>
+        <td id="r15s05" class="tw"></td>
+        <td id="r15s06"></td>
+        <td id="r15s07"></td>
+        <td id="r15s08" class="dl"></td>
+        <td id="r15s09"></td>
+        <td id="r15s10"></td>
+        <td id="r15s11" class="tw"></td>
+        <td id="r15s12"></td>
+        <td id="r15s13"></td>
+        <td id="r15s14"></td>
+        <td id="r15s15" class="tl"></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="player" id="player2">
+    <ul id="deck">
+      <li id="ltr00"></li>
+      <li id="ltr01"></li>
+      <li id="ltr02"></li>
+      <li id="ltr03"></li>
+      <li id="ltr04"></li>
+      <li id="ltr05"></li>
+      <li id="ltr06"></li>
+    </ul>
+    <div id="buttons">
+      <button class="btn get"><i class="fa fa-play"></i><br>play</button>
+      <button class="btn shuffle" onclick="shuffleNodes(); return false;"><i class="fa fa-random"></i><br>shuffle</button>
+      <button class="btn get_new"><i class="fa fa-refresh"></i><br>refresh</button>
+    </div>
+  </div>
+
+  <div id="joker_alphabet">
+    <div id="joker_core">
+      <h2>Select your letter</h2>
+      <span>a</span>
+      <span>b</span>
+      <span>c</span>
+      <span>d</span>
+      <span>e</span>
+      <span>f</span>
+      <span>g</span>
+      <span>h</span>
+      <span>i</span>
+      <span>j</span>
+      <span>k</span>
+      <span>l</span>
+      <span>m</span>
+      <span>n</span>
+      <span>o</span>
+      <span>p</span>
+      <span>q</span>
+      <span>r</span>
+      <span>s</span>
+      <span>t</span>
+      <span>u</span>
+      <span>v</span>
+      <span>w</span>
+      <span>x</span>
+      <span>y</span>
+      <span>z</span>
+      <ins title="Click on a letter to substitute it for the joker you have played. Attention: You can NOT move the letter anymore after selecting here. Sorry." onclick="alert('Click on a letter to substitute it for the joker you have played. Attention: You can NOT move the letter anymore after selecting here. Sorry.');return false;">?</ins>
+    </div>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    // enter the amount of tiles a player gets on each round
+    var numberOfTiles = 7;
+
+    // drag and drop functionality
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      var target = ev.target;
+      // Ensure the target is a valid drop zone
+      if (target.tagName === "TD" && target.childElementCount === 0) {
+        target.appendChild(document.getElementById(data));
+        target.classList.add('tile_played');
+        if(target.children[0].classList.contains('joker')) {
+          var rndClass = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+          target.classList.add(rndClass);
+          thisJokerTile = rndClass;
+          $('#joker_alphabet').css('display', 'flex');
+        }
+      }
+    }
+
+    $(function() {
+      $("table#game td").on("dragover", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        $(this).addClass('dragover');
+        allowDrop(event);
+      });
+
+      $("table#game td").on("dragleave", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        $(this).removeClass('dragover');
+      });
+      
+      var thisJokerTile = 'empty';
+      $("table#game td").on("drop", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        drop(event);
+        $(this).removeClass('dragover')
+              .addClass('tile_played');
+      });
+
+      // when clicking on a letter in the alphabet loaded up by the function above, replace the content of the joker tile with the selected letter
+      $('#joker_alphabet span').click(function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var letter = $(this).html();
+        $('.'+thisJokerTile).empty()
+          .html('<div class="draggable_tile '+thisJokerTile+'" draggable="true" ondragstart="drag(event)">' + letter + '<span>0</span></div>');      
+        $('#joker_alphabet').fadeOut('fast');
+      });
+
+      
+      // get 7 random keys from the alphabet (ab) object and stuff the keys in the tiles
+      // todo: not get 7 random keys, but actually figure out a way to select tiles from the ab Object and remove the played tiles from the Object
+      function getTiles(force) {
+        var allKeys = Object.keys(ab);
+        for(var i = 0; i < numberOfTiles; i++){
+          var rnd = Math.floor( Math.random() * allKeys.length);
+          var rndDivId = Math.random()
+                            .toString(36).replace(/[^a-z]+/g, '')
+                            .substr(0, 5);
+          var rndKeys = allKeys[rnd];
+          var dat = rndDivId + i + '_content';
+          var tile = '#ltr0' + i;
+          if (!force) {
+            // force new tiles on the board, but only when the tile is empty
+            if($(tile).html() == 0) {
+              $(tile)
+                .hide()
+                .html('<div class="draggable_tile" draggable="true" ondragstart="drag(event)" id="' + dat + '">' + 
+              rndKeys + '<span>' + ab[rndKeys].points + '</span></div>').delay(100).fadeIn('slow');
+            }
+          } else {
+            $(tile)
+              .hide()
+              .html('<div class="draggable_tile" draggable="true" ondragstart="drag(event)" id="' + dat + '">' + 
+            rndKeys + '<span>' + ab[rndKeys].points + '</span></div>').delay(100).fadeIn('slow');
+          }
+          
+          // add a helper class to the joker tiles so we can identify them more easily
+          $( "div:contains('_')" ).addClass("joker");
+        }
+      }
+      
+
+      // get random letters from alphabet object (ab)
+      $('.get').click(function() {
+        getTiles();
+        // whenever START/PLAY button is clicked, freeze played tiles on the board by setting draggable to false and removing ondragstart
+        $('table div').attr({
+          draggable: "false",
+          ondragstart: ""
+        });
+      });
+      
+      $('.get_new').click(function() {
+        // (1) forces new tiles. leaving this out only loads new tiles in empty slots, til a maximum of 'numberOfTiles'
+        getTiles(1);
+      });
+      
+    });
+
+    // Shuffle tiles
+    var ul = document.getElementById('deck');
+    function shuffleNodes() {
+      for (var i = ul.children.length; i >= 0; i--) {
+        ul.appendChild(ul.children[Math.random() * i | 0]);
+      }
+    }
+
+    // The alphabet, the values of each letter and the amount of tiles per game (taken from official WordFeud English rules)
+    var ab = {
+      a: { tiles: 10, points: 1 },
+      b: { tiles: 2, points: 4 },
+      c: { tiles: 2, points: 4 }, 
+      d: { tiles: 5, points: 2 }, 
+      e: { tiles: 12, points: 1 }, 
+      f: { tiles: 2, points: 4 },  
+      g: { tiles: 3, points: 3 }, 
+      h: { tiles: 4, points: 3 },
+      i: { tiles: 9, points: 1 },
+      j: { tiles: 1, points: 10 },
+      k: { tiles: 1, points: 5 },
+      l: { tiles: 4, points: 1 },  
+      m: { tiles: 2, points: 3 },  
+      n: { tiles: 5, points: 2 },
+      o: { tiles: 6, points: 1 },
+      p: { tiles: 2, points: 4 },
+      q: { tiles: 1, points: 10 },
+      r: { tiles: 6, points: 1 },
+      s: { tiles: 5, points: 1 },
+      t: { tiles: 7, points: 1 },
+      u: { tiles: 4, points: 2 },
+      v: { tiles: 2, points: 4 },
+      w: { tiles: 2, points: 4 },
+      x: { tiles: 1, points: 4 },
+      y: { tiles: 2, points: 4 },
+      z: { tiles: 1, points: 10 },
+      '_': { tiles: 2, points: 0 }
+    };
+  </script>
+</body>
+</html>

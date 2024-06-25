@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MboAir Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="mb-4">MboAir Management System</h1>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="planes-tab" data-toggle="tab" href="#planes" role="tab">Manage Planes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="personnel-tab" data-toggle="tab" href="#personnel" role="tab">Manage Personnel</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="flights-tab" data-toggle="tab" href="#flights" role="tab">Plan Flights</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="flightplans-tab" data-toggle="tab" href="#flightplans" role="tab">View Flight Plans</a>
+        </li>
+    </ul>
+    <div class="tab-content mt-3" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel">
+            <h3>Welcome to MboAir Management System</h3>
+            <p>Use the tabs to manage planes, personnel, and flight plans.</p>
+        </div>
+        <div class="tab-pane fade" id="planes" role="tabpanel">
+            <h3>Manage Planes</h3>
+            <form id="addPlaneForm">
+                <div class="form-group">
+                    <label for="planeType">Type</label>
+                    <input type="text" class="form-control" id="planeType" required>
+                </div>
+                <div class="form-group">
+                    <label for="planeCapacity">Capacity</label>
+                    <input type="number" class="form-control" id="planeCapacity" required>
+                </div>
+                <div class="form-group">
+                    <label for="planeUsage">Usage</label>
+                    <select class="form-control" id="planeUsage" required>
+                        <option value="Pax">Passenger</option>
+                        <option value="Cargo">Cargo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Plane</button>
+            </form>
+            <h3 class="mt-4">Existing Planes</h3>
+            <ul id="planeList" class="list-group">
+                <!-- Plane list items will be injected here by JavaScript -->
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="personnel" role="tabpanel">
+            <h3>Manage Personnel</h3>
+            <form id="addPersonnelForm">
+                <div class="form-group">
+                    <label for="personnelName">Name</label>
+                    <input type="text" class="form-control" id="personnelName" required>
+                </div>
+                <div class="form-group">
+                    <label for="personnelRole">Role</label>
+                    <input type="text" class="form-control" id="personnelRole" required>
+                </div>
+                <div class="form-group">
+                    <label for="personnelDepartment">Department</label>
+                    <input type="text" class="form-control" id="personnelDepartment" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Personnel</button>
+            </form>
+            <h3 class="mt-4">Existing Personnel</h3>
+            <ul id="personnelList" class="list-group">
+                <!-- Personnel list items will be injected here by JavaScript -->
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="flights" role="tabpanel">
+            <h3>Plan Flights</h3>
+            <form id="addFlightForm">
+                <div class="form-group">
+                    <label for="flightPlane">Plane</label>
+                    <select class="form-control" id="flightPlane" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="departureTime">Departure Time</label>
+                    <input type="datetime-local" class="form-control" id="departureTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="arrivalTime">Arrival Time</label>
+                    <input type="datetime-local" class="form-control" id="arrivalTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="departureAirport">Departure Airport</label>
+                    <input type="text" class="form-control" id="departureAirport" required>
+                </div>
+                <div class="form-group">
+                    <label for="arrivalAirport">Arrival Airport</label>
+                    <input type="text" class="form-control" id="arrivalAirport" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Plan Flight</button>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="flightplans" role="tabpanel">
+            <h3>View Flight Plans</h3>
+            <ul id="flightPlanList" class="list-group">
+                <!-- Flight plan list items will be injected here by JavaScript -->
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
