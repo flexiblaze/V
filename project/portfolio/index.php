@@ -20,16 +20,18 @@ include 'connection.php';
 </head>
 <body>
 
+
 <!-- HEADER -->
-<div id="img">
+<div id="header">
     <div class="navigation">
       <nav>
-          <img id="logo" src="images/logo.png" alt=""/>
+          <a href="#header"><img id="logo" src="images/logo.png" alt=""/></a>
             <ul>
                 <li><a href="#container">About</a></li>
                 <li><a href="#work-section">Work</a></li>
                 <li><a href="#cv-part">Cv</a></li>
                 <li><a href="#contact">Contact</a></li>
+                
             </ul>
           </nav>
         </div>
@@ -100,14 +102,14 @@ include 'connection.php';
               </div>
 
         </div>
-
+        </section>
 <!-- CV -->
 
-      </section>
+     
       <section id="cv-part">
               <h1 class="title-text">CV</h1>
                 <p>Click here to dowloand <a id="dowloand" href="images/cv.png" download>my CV</p></a>
-
+                
       </section>
 
 <!-- CONTACT -->
@@ -117,6 +119,8 @@ include 'connection.php';
           <p>You can message me in Linkedin or send a email to ilikcay24@gmail.com</p>
       </section>
 
+<!-- JAVASCRIPT DOCUMENT -->
+      <script src="script.js"></script>
       </body> 
 
 <!-- FOOTER- SOCIALS -->

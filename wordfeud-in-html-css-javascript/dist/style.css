@@ -1,0 +1,256 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  user-select: none;
+  cursor: default;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #1D1D1D;
+  color: #fff;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
+}
+
+header {
+  text-align: center;
+}
+header h1 {
+  font-weight: 100;
+  padding-top: 0;
+  margin-top: 0.25em;
+}
+header h1 span {
+  font-size: 14px;
+  opacity: 0.65;
+}
+
+#game {
+  width: 600px;
+  height: 600px;
+  margin: 1em auto;
+  background: #1D1D1D;
+}
+#game tr {
+  height: 40px;
+}
+#game td {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  border: 1px solid #1D1D1D;
+  border-radius: 4px;
+  border-collapse: collapse;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: #2C2F36;
+}
+#game td.dragover {
+  background: #434752;
+  border-color: #2C2F36;
+}
+#game td.tl {
+  background: #4863A6;
+}
+#game td.tl:before {
+  content: "tl";
+}
+#game td.tl.dragover {
+  background: #657ebc;
+  border-color: #4863A6;
+}
+#game td.tw {
+  background: #7F3A3E;
+}
+#game td.tw:before {
+  content: "tw";
+}
+#game td.tw.dragover {
+  background: #a24a4f;
+  border-color: #7F3A3E;
+}
+#game td.dl {
+  background: #729B67;
+}
+#game td.dl:before {
+  content: "dl";
+}
+#game td.dl.dragover {
+  background: #8faf86;
+  border-color: #729B67;
+}
+#game td.dw {
+  background: #B77320;
+}
+#game td.dw:before {
+  content: "dw";
+}
+#game td.dw.dragover {
+  background: #db8e2f;
+  border-color: #B77320;
+}
+#game td.ct {
+  background: #64415F;
+}
+#game td.ct:before {
+  content: "☘";
+}
+#game td.ct.dragover {
+  background: #83557c;
+  border-color: #64415F;
+}
+
+.player {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2em;
+  height: 40px;
+}
+.player ul, .player ul li {
+  display: inline-block;
+  list-style: none;
+}
+.player li > div {
+  margin: 0 4px 0 0;
+}
+.player ul {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+}
+.player ul.sortable-ghost {
+  background: orange;
+}
+
+#buttons {
+  clear: both;
+  margin-top: 1em;
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  padding: 6px 8px;
+  margin: 0 5px 1em;
+  border: none;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.get_new {
+  color: #CE2931;
+}
+
+[draggable=true] {
+  user-drag: element;
+  cursor: move;
+}
+[draggable=true]:active {
+  opacity: 0.4;
+}
+
+div.draggable_tile {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 6px;
+  margin-right: 10px;
+  vertical-align: middle;
+  background: #F2EEE9;
+  color: #0d1116;
+  position: relative;
+  border: 2px solid rgba(15, 15, 15, 0.5);
+  border-radius: 4px;
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 34px;
+}
+div.draggable_tile:last-child {
+  margin-right: 0;
+}
+
+.draggable_tile span {
+  font-size: 12px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: block;
+  line-height: 1;
+}
+
+.tile_played > div {
+  width: 100%;
+  height: 100%;
+  line-height: 36px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+  font-size: 22px;
+  font-weight: normal;
+  border: none;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+.tile_played > div span {
+  font-size: 12px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: block;
+  line-height: 1;
+}
+
+#joker_alphabet {
+  background: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  color: #fff;
+  display: none;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+#joker_alphabet #joker_core {
+  background: #1D1D1D;
+  box-shadow: 1px 4px 42px #181818;
+  width: 600px;
+  text-align: center;
+  padding-bottom: 1em;
+}
+#joker_alphabet #joker_core h2 {
+  margin: 0;
+  padding: 1em 0 0.5em;
+}
+#joker_alphabet #joker_core span, #joker_alphabet #joker_core ins {
+  background: #2C2F36;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin: 10px;
+  cursor: pointer;
+}
+#joker_alphabet #joker_core span:hover, #joker_alphabet #joker_core ins:hover {
+  background: #1D1D1D;
+}
+#joker_alphabet #joker_core ins {
+  background: black;
+  text-decoration: none;
+  cursor: help;
+  border-color: green;
+}

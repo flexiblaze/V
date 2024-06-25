@@ -8,6 +8,7 @@ body{
 	font-family: "Segoe Script", "Inter" sans-serif;
   margin: 0;
   padding: 0;
+  flex: 1;
 }
 
 
@@ -15,17 +16,20 @@ body{
 
 
 /* HEADER */
-.navigation{
-  height: 100px; 
-  width: 100%;
-  margin-bottom: 300px;
-}
-#img{
+
+#header{
   background-image: url('2.gif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 50px;
+}
+
+.navigation{
+  height: 100px; 
+  width: 100%;
+  margin-bottom: 300px;
+  
 }
 
 
@@ -46,6 +50,7 @@ nav ul li{
   list-style-type: none;
   display: inline-block;
   padding: 10px 20px;
+  
 }
 
 nav ul li a{
@@ -61,6 +66,10 @@ nav ul li a:hover{
   transition: .3s ease-in-out;
   
 }
+
+
+
+
 
 /* INTRO */
 
@@ -80,6 +89,15 @@ p{
 
 hr{
   margin: 0;
+}
+
+#btn{
+  border: 2px solid white;
+  padding: 7px;
+  font-size: medium;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
 }
 
 /* INTRO ICONS */
@@ -274,4 +292,29 @@ footer{
   .comment-box p {
     margin-bottom: 15px;
     width: 450px;
+  }
+
+
+  /* MEDIA QUERY */
+
+  @media only screen and (max-width: 1257px) {
+
+    #work-section {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+    }
+
+    .big-box{
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+  }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*=""] {
+      width: 100%;
+    }
   }
